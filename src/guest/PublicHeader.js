@@ -2,16 +2,18 @@ import React from 'react';
 import logo from '../logo.svg';
 import '../index.css';
 import { Link } from 'react-router-dom';
+import * as TRANS from '../utils/trans/TranslationService';
 export const PublicHeader = (props) => {
-    const {active} = props;
+    const {active, lang} = props;
     return (
         <header className="guest-header">
             <ul>
                 <li><img src={logo} style={{width: 100}} className="App-logo" alt="logo" /></li>
-                <li><Link to="/" className={`${active.route === '/' && 'active'}`}>Home</Link></li>
+                <li className="guest-header-text">{TRANS.trans('welcome_text', lang)}</li>
+                <li><Link to="/" className={`${active.route === '/' && 'active'}`}>{TRANS.trans('home', lang)}</Link></li>
                 <div className="take-right">
-                    <li><Link to="/login" className={`${active.route === '/login' && 'active'}`}>Login</Link></li>
-                    <li><Link to="/signup" className={`${active.route === '/signup' && 'active'}`}>Sign Up</Link></li>
+                    <li><Link to="/login" className={`${active.route === '/login' && 'active'}`}>{TRANS.trans('login', lang)}</Link></li>
+                    <li><Link to="/signup" className={`${active.route === '/signup' && 'active'}`}>{TRANS.trans('sign_up', lang)}</Link></li>
                 </div>
             </ul>
         </header>

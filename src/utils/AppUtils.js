@@ -1,4 +1,4 @@
-export const getLocale = () => localStorage.getItem('locale');
+export const getLocale = () => localStorage.getItem('locale') || 'en';
 export const setLocale = (locale) => localStorage.setItem('locale', locale);
 export const setAccessToken = (accessToken) => localStorage.setItem('accessToken', accessToken);
 export const getAccessToken = () => localStorage.getItem('accessToken');

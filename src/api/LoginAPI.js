@@ -8,21 +8,30 @@ const headers = {
     'Accept': 'application/json'
 }
 export const login = (credentials, callback, errorCallback) => {
-    fetch(`${BASE_URL}${userUrls.LOGIN}`, { headers })
-        .then(res => res.json())
-        .then(response => {
-            console.log(response);
-            AppUtils.setAuthenticationState(true);
-            AppUtils.setAccessToken(response.access_token);
-            AppUtils.setRefreshToken(response.refresh_token);
-            AppUtils.setTokenExpiresAt(response.expires_in);
-            // get the user details here
-            getApiUserDetails();
-            return callback && callback();
-        }, httpError => {
-            console.log(httpError);
-            return errorCallback && errorCallback(httpError.error);
-          });
+    console.log("initializing login...");
+    fetch(`${BASE_URL}${userUrls.LOGIN}`, { 
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json',
+        }, 
+        body: JSON.stringify(credentials)
+     }).then(res => {
+         if(res.ok) {
+            res.json().then(response => {
+                console.log(response);
+                AppUtils.setAuthenticationState(true);
+                AppUtils.setAccessToken(response.access_token);
+                AppUtils.setRefreshToken(response.refresh_token);
+                AppUtils.setTokenExpiresIn(response.expires_in);
+                // get the user details here
+                getApiUserDetails();
+                return callback && callback();
+            })} else {
+                console.log(res);
+                return errorCallback && errorCallback();
+            }
+        });
 }
 
 export const refreshToken = () => {
@@ -40,7 +49,7 @@ export const refreshToken = () => {
         console.log('System: refreshing token');
         AppUtils.setAccessToken(token.access_token);
         AppUtils.setRefreshToken(token.refresh_token);
-        AppUtils.setTokenExpiresAt(token.expires_in);
+        AppUtils.setTokenExpiresIn(token.expires_in);
         // since the user details may have changed, just refresh it too
         refreshApiUserDetails();
         setTimeout(() => refreshTokenState = false, 100);

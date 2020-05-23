@@ -24,3 +24,8 @@ To get started:
 
 * install all project dependencies with `npm install`
 * start the development server with `npm start` or `yarn start`
+
+## Test credentials
+
+1. username: admin@devotion.com, pass: 12345678
+2. username: user@devotion.com, pass: 12345678
