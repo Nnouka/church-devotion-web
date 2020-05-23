@@ -17,3 +17,10 @@ A devotional has a duration. If a devotional has a duration of n days, then it m
 A pulse has a title, an exhortation, some scripture references, some prayer points.
 Scripture reference is book, chapter and verse
 Prayer point is, an issue and God’s answer
+
+## Up and Running
+
+To get started:
+
+* install all project dependencies with `npm install`
+* start the development server with `npm start` or `yarn start`
