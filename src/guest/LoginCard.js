@@ -17,7 +17,7 @@ class LoginCard extends Component {
         const {lang} = this.props.lang;
         return (
             <div>
-            <div className="card center mt-50">
+            <div className="card center mt-100">
                 <div className="card-container">
                     <h2 className="card-title">{`${TRANS.trans('login', lang)}`}</h2>
                     <form onSubmit={this.handleSubmit}>
