@@ -7,7 +7,7 @@ export const WelcomePage = (props) => {
         <div>
             <PublicHeader active={{route: '/'}}/>
             <div className="App-header">
-                <h1>{`<${TRANS.trans('welcome_text', props.lang)}/>`}</h1>
+                <h1>{`${TRANS.trans('welcome_text', props.lang)}`}</h1>
             </div>
         </div>
     );
