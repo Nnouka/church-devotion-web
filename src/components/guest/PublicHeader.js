@@ -1,8 +1,9 @@
 import React from 'react';
-import logo from '../logo.svg';
-import '../index.css';
+import logo from '../../logo.svg';
+import '../../index.css';
 import { Link } from 'react-router-dom';
-import * as TRANS from '../utils/trans/TranslationService';
+import * as TRANS from '../../utils/trans/TranslationService';
+import {connect} from 'react-redux';
 export const PublicHeader = (props) => {
     const {active, lang} = props;
     return (
@@ -20,4 +21,10 @@ export const PublicHeader = (props) => {
     );
 }
 
-export default PublicHeader;
+function mapStateToProps({currentLang}, props) {
+    return {
+        lang: currentLang,
+        ...props
+    }
+}
+export default connect(mapStateToProps)(PublicHeader);

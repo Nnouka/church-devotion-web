@@ -7,9 +7,9 @@ const accessToken = AppUtils.getAccessToken();
 const headers = {
     'Accept': 'application/json'
 }
-export const login = (credentials, callback, errorCallback) => {
+export const login = (credentials) => {
     console.log("initializing login...");
-    fetch(`${BASE_URL}${userUrls.LOGIN}`, { 
+    return fetch(`${BASE_URL}${userUrls.LOGIN}`, {
         method: 'POST',
         headers: {
             ...headers,
@@ -18,20 +18,16 @@ export const login = (credentials, callback, errorCallback) => {
         body: JSON.stringify(credentials)
      }).then(res => {
          if(res.ok) {
-            res.json().then(response => {
+            return res.json().then(response => {
                 console.log(response);
                 AppUtils.setAuthenticationState(true);
                 AppUtils.setAccessToken(response.access_token);
                 AppUtils.setRefreshToken(response.refresh_token);
                 AppUtils.setTokenExpiresIn(response.expires_in);
-                // get the user details here
-                getApiUserDetails();
-                return callback && callback();
             })} else {
-                console.log(res);
-                return errorCallback && errorCallback();
-            }
-        });
+             console.log("login error")
+         }
+        }).catch(error => console.log(error));
 }
 
 export const refreshToken = () => {

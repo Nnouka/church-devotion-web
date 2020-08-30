@@ -1,6 +1,6 @@
 
-import {map_en} from '../../lang/en/english';
-import {map_fr} from '../../lang/fr/french';
+import {map_en} from '../../components/lang/en/english';
+import {map_fr} from '../../components/lang/fr/french';
 import * as App from '../AppUtils'; 
 
 const englishMap = map_en;

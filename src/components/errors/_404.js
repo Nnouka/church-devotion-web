@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import * as TRANS from '../utils/trans/TranslationService';
+import * as TRANS from '../../utils/trans/TranslationService';
 
 const _404 = (props) => {
     const {lang} = props;

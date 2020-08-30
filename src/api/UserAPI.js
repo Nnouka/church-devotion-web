@@ -9,13 +9,10 @@ const headers = {
 }
 
 export const getApiUserDetails = () => {
-    fetch(`${BASE_URL}${userUrls.DETAILS}`, { headers })
+    return fetch(`${BASE_URL}${userUrls.DETAILS}`, { headers })
     .then(res => {
         if(res.ok) {
-            res.json().then(response => {
-                console.log(response);
-                AppUtils.setUserDetails(JSON.stringify(response));
-            })
+           return  res.json();
         } else {
             console.log("error", res);
         }
