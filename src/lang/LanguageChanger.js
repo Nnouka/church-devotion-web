@@ -7,7 +7,7 @@ class LanguageChanger extends Component {
     render() {
         const {onLanguageChanged} = this.props;
         return (
-            <div style={{position: 'fixed', top: 50, right: 20, zIndex: 999}}>
+            <div style={{position: 'fixed', top: 100 + 'px', right: 20 + 'px', zIndex: 999}}>
             <select className="border-bottom-1-p"
             name="lang-select" 
             onChange={(event) => {

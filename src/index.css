@@ -248,6 +248,9 @@ body, .app {
 .mt-50 {
   margin-top: 50px !important;
 }
+.mt-100 {
+  margin-top: 100px !important;
+}
 input,
 select {
   width: 100%;
@@ -294,4 +297,10 @@ button:hover {
 /* Add some padding inside the card container */
 .card-container {
   padding: 2px 16px;
+}
+.alert-danger {
+  padding: 20px;
+  background-color: #f44336; /* Red */
+  color: white;
+  margin-bottom: 15px;
 }
