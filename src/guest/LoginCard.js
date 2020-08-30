@@ -17,18 +17,17 @@ class LoginCard extends Component {
         const {lang} = this.props.lang;
         return (
             <div>
-            <div className="card center mt-100">
-                <div className="card-container">
-                    <h2 className="card-title">{`${TRANS.trans('login', lang)}`}</h2>
-                    <form onSubmit={this.handleSubmit}>
-                        <input type='text' name="username" placeholder={`${TRANS.trans('email', lang)}`}/>
-                        <input type='password' name="password" placeholder={`${TRANS.trans('password', lang)}`}/>
-                        <button type="submit">{`${TRANS.trans('login', lang)}`}</button>
-                    </form>
+                <div className="card center mt-50">
+                    <div className="card-container">
+                        <h2 className="card-title">{`${TRANS.trans('login', lang)}`}</h2>
+                        <form onSubmit={this.handleSubmit}>
+                            <input type='text' name="username" placeholder={`${TRANS.trans('email', lang)}`}/>
+                            <input type='password' name="password" placeholder={`${TRANS.trans('password', lang)}`}/>
+                            <button type="submit">{`${TRANS.trans('login', lang)}`}</button>
+                        </form>
+                    </div>
                 </div>
-            </div>
-            </div>
-            
+            </div>   
         );
     }
 }
