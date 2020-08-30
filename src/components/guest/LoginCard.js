@@ -13,13 +13,8 @@ class LoginCard extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         const values = serializeForm(e.target, {hash: true});
-        const {dispatch, history} = this.props;
-        dispatch(handleLogin(values, () => history.push('/dashboard')));
-
-       /* if (this.props.onLogin) {
-            app.login(values, (user) => this.dispatchCallback(user));
-        }*/
-
+        const {dispatch, history, redirectUrl} = this.props;
+        dispatch(handleLogin(values, () => history.push(redirectUrl)));
     }
     render() {
         const {lang} = this.props;

@@ -3,8 +3,18 @@ import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import WelcomePage from "../guest/WelcomePage";
 import LoginPage from "../guest/LoginPage";
 import DashBoard from "../home/DashBoard";
+import {connect} from 'react-redux';
+import {receiveAuthedUser} from "../../actions/user";
+import {getAuthState, getUserDetails} from "../../utils/AppUtils";
+import {setAuthState} from "../../actions/authState";
 
 class NavigationGraph extends Component {
+    componentDidMount() {
+        const {dispatch} = this.props;
+        dispatch(setAuthState(getAuthState()));
+        dispatch(receiveAuthedUser(getUserDetails()));
+    }
+
     render() {
         return (
             <Router>
@@ -18,4 +28,4 @@ class NavigationGraph extends Component {
     }
 }
 
-export default NavigationGraph;
+export default connect()(NavigationGraph);

@@ -19,7 +19,6 @@ export const login = (credentials) => {
      }).then(res => {
          if(res.ok) {
             return res.json().then(response => {
-                console.log(response);
                 AppUtils.setAuthenticationState(true);
                 AppUtils.setAccessToken(response.access_token);
                 AppUtils.setRefreshToken(response.refresh_token);

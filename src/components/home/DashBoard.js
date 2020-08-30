@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import MainHeader from './MainHeader';
 import * as TRANS from '../../utils/trans/TranslationService';
-import * as AppUtils from '../../utils/AppUtils';
 import {connect} from "react-redux";
 
 class DashBoard extends Component {
@@ -14,7 +13,7 @@ class DashBoard extends Component {
                     {`<${TRANS.trans('cnt_contact', lang)}/>`}
                 </div>
                 <div className="mt-50">
-                    {`<${TRANS.trans('welcome')} ${user === undefined ||
+                    {`<${TRANS.trans('welcome', lang)} ${user === undefined ||
                     user === null ? '' : user.fullName}>`}
                 </div>
             </div>

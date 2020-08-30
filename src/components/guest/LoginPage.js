@@ -5,10 +5,12 @@ import {connect} from 'react-redux';
 
 class LoginPage extends Component {
     render() {
+        const {intendedUrl} = this.props;
+        const getRedirectUrl = () => intendedUrl || '/dashboard';
         return (
             <div>
                 <PublicHeader active={{route: '/login'}} />
-                <LoginCard history={this.props.history}/>
+                <LoginCard history={this.props.history} redirectUrl={getRedirectUrl()}/>
             </div>
         );
     }
