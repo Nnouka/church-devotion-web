@@ -18,3 +18,4 @@ export const setTokenExpiresIn = (expiresIn) => {
 export const getTokenExpiresAt = () => Number(localStorage.getItem('tokenExpiresAt'));
 export const setUserDetails = (detailStr) => localStorage.setItem('userDetails', detailStr);
 export const getUserDetails = () => JSON.parse(localStorage.getItem('userDetails'));
+export const logout = () => clearLocalStorage();

@@ -1,8 +1,9 @@
 export const map_fr = new Map([
+  ['app_name', ["Devotion de l'Eglise"]],
   ["greeting", ["Elas"]],
   ["greet", ["hello my baby", "hello my babies"]],
   ["lang", ["changer de langue"]],
-  ["welcome_text", ["Bienvenue à \"Church Devotion\""]],
+  ["welcome_text", ["Bienvenue à Devotion de l'Eglise"]],
   ["english", ["Anglais"]],
   ["french", ["Français"]],
   ["home", ["Accueil", "Maisons"]],
@@ -247,4 +248,5 @@ export const map_fr = new Map([
   ['sure_restore', ['Voulez-vous restaurer']],
   ['enrollment_restored', ['Inscription rétablie!']],
   ['restore_failed', ['Impossible de restaurer l\'inscription avec cause']],
+  ['login_gist', ['Vous êtes connecté']],
 ]);

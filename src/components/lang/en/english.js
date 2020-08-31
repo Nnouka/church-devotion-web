@@ -1,4 +1,5 @@
 export const map_en = new Map([
+  ['app_name', ["Church Devotion"]],
   ["greeting", ["hello"]],
   ["greet", ["hello my baby", "hello my babies"]],
   ["lang", ["change language"]],
@@ -249,6 +250,7 @@ export const map_en = new Map([
   ['sure_restore', ['Please Do you want to restore']],
   ['enrollment_restored', ['Enrollment restored!']],
   ['restore_failed', ['Failed to restore enrollment with cause']],
+  ['login_gist', ['You are logged in']],
 
 
 

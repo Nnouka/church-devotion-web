@@ -8,6 +8,7 @@ import {setCurrentLang} from "../../actions/currentLang";
 class LanguageChanger extends Component {
     render() {
         const {dispatch, lang} = this.props;
+        console.log("LanguageChanger", lang);
         return (
             <div style={{position: 'fixed', top: 100 + 'px', right: 20 + 'px', zIndex: 999}}>
             <select className="border-bottom-1-p"
@@ -17,7 +18,7 @@ class LanguageChanger extends Component {
                 dispatch(setCurrentLang(val));
                 AppUtils.setLocale(val)}
             }
-            defaultValue={lang}>
+            defaultValue={'none'}>
                 <option disabled value="none">{`${TRANS.trans('lang')}`}</option>
                 {
                     locale.map((loc, index) => (

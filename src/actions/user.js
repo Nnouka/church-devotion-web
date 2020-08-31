@@ -18,10 +18,12 @@ export function handleLogin(credentials, callback) {
         dispatch(showLoading());
         return login(credentials).then(
             () => {
-                dispatch(setAuthState(true));
                 getApiUserDetails().then(response => {
-                    AppUtils.setUserDetails(JSON.stringify(response));
-                    dispatch(receiveAuthedUser(response));
+                    if (response !== undefined) {
+                        dispatch(setAuthState(true));
+                        AppUtils.setUserDetails(JSON.stringify(response));
+                        dispatch(receiveAuthedUser(response));
+                    }
                     dispatch(hideLoading());
                     if (callback) {
                         callback();

@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom';
 import LoginPage from "../guest/LoginPage";
 
 export default function (RequireAuthComponent, intendedUrl = '/dashboard') {
@@ -24,5 +23,5 @@ export default function (RequireAuthComponent, intendedUrl = '/dashboard') {
             ...props
         }
     }
-    return withRouter(connect(mapStateToProps)(Authenticator));
+    return connect(mapStateToProps)(Authenticator);
 }

@@ -1,20 +1,18 @@
 import React, {Component} from 'react';
-import MainHeader from './MainHeader';
 import * as TRANS from '../../utils/trans/TranslationService';
 import {connect} from "react-redux";
-
+import authenticator from '../auth/Authenticator';
 class DashBoard extends Component {
     render() {
-        const {lang, onLogout, user, authState} = this.props;
+        const {lang, user} = this.props;
         return (
-            <div>
-                <MainHeader lang={lang} active={{route: '/dashboard'}} onLogout={onLogout}/>
-                <div className="mt-50">
-                    {`<${TRANS.trans('cnt_contact', lang)}/>`}
+            <div className='card center mt-50'>
+                <div className="card-title">
+                    {`${TRANS.trans('welcome', lang)} ${user === undefined ||
+                    user === null ? '' : user.fullName}`}
                 </div>
-                <div className="mt-50">
-                    {`<${TRANS.trans('welcome', lang)} ${user === undefined ||
-                    user === null ? '' : user.fullName}>`}
+                <div className="text-center">
+                    {`${TRANS.trans('login_gist', lang)}`}
                 </div>
             </div>
         );
@@ -28,4 +26,4 @@ function mapStateToProps({currentLang, user, authState}, props) {
         ...props
     }
 }
-export default connect(mapStateToProps)(DashBoard);
+export default authenticator(connect(mapStateToProps)(DashBoard));

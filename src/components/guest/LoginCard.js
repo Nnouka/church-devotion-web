@@ -1,15 +1,11 @@
 import React, {Component} from 'react';
 import * as TRANS from '../../utils/trans/TranslationService';
 import serializeForm from 'form-serialize';
-import * as app from '../../utils/AppService';
+import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {handleLogin, receiveAuthedUser} from "../../actions/user";
+import {handleLogin} from "../../actions/user";
 
 class LoginCard extends Component {
-    dispatchCallback(user) {
-        const {dispatch} = this.props;
-        dispatch(receiveAuthedUser(user));
-    }
     handleSubmit = (e) => {
         e.preventDefault();
         const values = serializeForm(e.target, {hash: true});
@@ -42,4 +38,4 @@ function mapStateToProps({currentLang}, props) {
     }
 }
 
-export default connect(mapStateToProps)(LoginCard);
+export default withRouter(connect(mapStateToProps)(LoginCard));

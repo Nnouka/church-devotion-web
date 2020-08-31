@@ -5,24 +5,59 @@ import LoginPage from "../guest/LoginPage";
 import DashBoard from "../home/DashBoard";
 import {connect} from 'react-redux';
 import {receiveAuthedUser} from "../../actions/user";
-import {getAuthState, getUserDetails} from "../../utils/AppUtils";
+import {getAuthState, getLocale, getUserDetails} from "../../utils/AppUtils";
 import {setAuthState} from "../../actions/authState";
+import {Container} from '@material-ui/core';
+import NavHeader from "./NavHeader";
+import {setActiveRoute} from "../../actions/activeRoute";
+import {setCurrentLang} from "../../actions/currentLang";
+import _404 from "../errors/_404";
 
 class NavigationGraph extends Component {
     componentDidMount() {
         const {dispatch} = this.props;
         dispatch(setAuthState(getAuthState()));
         dispatch(receiveAuthedUser(getUserDetails()));
+        dispatch(setCurrentLang(getLocale()));
     }
 
     render() {
+        const {dispatch} = this.props;
+        const handleSetActiveRoute = (route) => dispatch(setActiveRoute(route));
         return (
             <Router>
-                <Switch>
-                    <Route exact path='/' component={WelcomePage}/>
-                    <Route exact path='/login' render={({history}) => <LoginPage history={history}/> } />
-                    <Route exact path='/dashboard' component={DashBoard} />
-                </Switch>
+                <NavHeader />
+                <Container>
+                    <Switch>
+                        <Route
+                            exact
+                            path='/'
+                            render={
+                                () => {
+                                    handleSetActiveRoute('/');
+                                    return <WelcomePage />
+                                }
+                            }
+                        />
+                        <Route
+                            exact
+                            path='/login'
+                            render={() => {
+                                handleSetActiveRoute('/login');
+                                return <LoginPage />;
+                            }} />
+                        <Route
+                            exact
+                            path='/dashboard'
+                            render={
+                                () => {
+                                    handleSetActiveRoute('/dashboard');
+                                    return <DashBoard />
+                                }
+                            } />
+                        <Route component={_404} />
+                    </Switch>
+                </Container>
             </Router>
         );
     }
