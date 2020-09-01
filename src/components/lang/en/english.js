@@ -251,7 +251,7 @@ export const map_en = new Map([
   ['enrollment_restored', ['Enrollment restored!']],
   ['restore_failed', ['Failed to restore enrollment with cause']],
   ['login_gist', ['You are logged in']],
-
+  ['reg_verified', ['Email Verified Successfully. Please Login!']],
 
 
 ]);

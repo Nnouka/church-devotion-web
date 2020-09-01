@@ -12,6 +12,7 @@ import NavHeader from "./NavHeader";
 import {setActiveRoute} from "../../actions/activeRoute";
 import {setCurrentLang} from "../../actions/currentLang";
 import _404 from "../errors/_404";
+import SignUpPage from "../auth/SignUpPage";
 
 class NavigationGraph extends Component {
     componentDidMount() {
@@ -53,6 +54,15 @@ class NavigationGraph extends Component {
                                 () => {
                                     handleSetActiveRoute('/dashboard');
                                     return <DashBoard />
+                                }
+                            } />
+                        <Route
+                            exact
+                            path='/signup'
+                            render={
+                                (props) => {
+                                    handleSetActiveRoute('/signup');
+                                    return <SignUpPage {...props} />
                                 }
                             } />
                         <Route component={_404} />

@@ -249,4 +249,5 @@ export const map_fr = new Map([
   ['enrollment_restored', ['Inscription rétablie!']],
   ['restore_failed', ['Impossible de restaurer l\'inscription avec cause']],
   ['login_gist', ['Vous êtes connecté']],
+  ['reg_verified', ['Email vérifié avec succès. Veuillez vous connecter!']],
 ]);

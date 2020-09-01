@@ -3,40 +3,28 @@ import * as TRANS from '../../utils/trans/TranslationService';
 import serializeForm from 'form-serialize';
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {handleLogin} from "../../actions/user";
-import queryStr from "../../utils/queryStr";
+import {handleSignUp} from "../../actions/user";
 
 class LoginCard extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         const values = serializeForm(e.target, {hash: true});
-        const {dispatch, history, redirectUrl} = this.props;
-        dispatch(handleLogin(values, () => history.push(redirectUrl)));
+        const {dispatch, history, lang} = this.props;
+        dispatch(handleSignUp(values, () =>
+            history.push(`/login?m=${btoa(TRANS.trans('registration_success', lang))}`)));
     }
     render() {
         const {lang} = this.props;
-        const message = queryStr.decode(this.props.message);
-        const regSuccess= this.props.regSuccess;
         return (
             <div>
                 <div className="card center mt-50">
-                    {
-                        message !== undefined &&
-                        <div className='alert-success text-center'>
-                            {message}
-                        </div>
-                    }
-                    {
-                        regSuccess !== undefined &&
-                        <div className='alert-success text-center'>
-                            {TRANS.trans(regSuccess, lang)}
-                        </div>
-                    }
                     <div className="card-container">
-                        <h2 className="card-title">{`${TRANS.trans('login', lang)}`}</h2>
+                        <h2 className="card-title">{`${TRANS.trans('sign_up', lang)}`}</h2>
                         <form onSubmit={(event) => this.handleSubmit(event)}>
-                            <input type='text' name="username" placeholder={`${TRANS.trans('email', lang)}`}/>
+                            <input type='text' name="fullName" placeholder={`${TRANS.trans('full_name', lang)}`}/>
+                            <input type='email' name="email" placeholder={`${TRANS.trans('email', lang)}`}/>
                             <input type='password' name="password" placeholder={`${TRANS.trans('password', lang)}`}/>
+                            <input type='text' name="phone" placeholder={`${TRANS.trans('phone_number', lang)}`}/>
                             <button type="submit">{`${TRANS.trans('login', lang)}`}</button>
                         </form>
                     </div>

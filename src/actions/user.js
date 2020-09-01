@@ -1,4 +1,5 @@
-import {login} from '../api/LoginAPI'
+import {login} from '../api/LoginAPI';
+import {registerUser} from '../api/SignUpAPI';
 import {hideLoading, showLoading} from "react-redux-loading";
 import {getApiUserDetails} from "../api/UserAPI";
 import * as AppUtils from "../utils/AppUtils";
@@ -31,5 +32,18 @@ export function handleLogin(credentials, callback) {
                 })
             }
         );
+    }
+}
+
+export function handleSignUp(credentials, callback) {
+    return(dispatch) => {
+        dispatch(showLoading());
+        return registerUser(credentials).then(
+            () => {
+                dispatch(hideLoading())
+                if (callback) {
+                    callback();
+                }
+            })
     }
 }

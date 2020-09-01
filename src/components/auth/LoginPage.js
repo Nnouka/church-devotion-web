@@ -6,9 +6,14 @@ class LoginPage extends Component {
     render() {
         const {intendedUrl, location} = this.props;
         const getRedirectUrl = () => intendedUrl || '/dashboard';
+        const query = queryStr.parse(location.search);
         return (
             <div>
-                <LoginCard redirectUrl={getRedirectUrl()} message={queryStr.parse(location.search).m}/>
+                <LoginCard
+                    redirectUrl={getRedirectUrl()}
+                    message={query.m}
+                    regSuccess={query.r}
+                />
             </div>
         );
     }
