@@ -4,6 +4,7 @@ import serializeForm from 'form-serialize';
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {handleLogin} from "../../actions/user";
+import queryStr from "../../utils/queryStr";
 
 class LoginCard extends Component {
     handleSubmit = (e) => {
@@ -14,9 +15,17 @@ class LoginCard extends Component {
     }
     render() {
         const {lang} = this.props;
+        const message = queryStr.decode(this.props.message);
+        console.log(btoa("Here i am to worship").toString());
         return (
             <div>
                 <div className="card center mt-50">
+                    {
+                        message !== undefined &&
+                        <div className='alert-success'>
+                            {message}
+                        </div>
+                    }
                     <div className="card-container">
                         <h2 className="card-title">{`${TRANS.trans('login', lang)}`}</h2>
                         <form onSubmit={(event) => this.handleSubmit(event)}>

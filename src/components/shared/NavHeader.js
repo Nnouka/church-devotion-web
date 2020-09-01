@@ -8,6 +8,7 @@ import * as AppUtils from '../../utils/AppUtils';
 import {setAuthState} from "../../actions/authState";
 import {receiveAuthedUser} from "../../actions/user";
 import {withRouter} from 'react-router-dom';
+
 class NavHeader extends Component {
     render() {
         const {active, lang, dispatch, user, authState, history} = this.props;

@@ -197,7 +197,7 @@ body, .app {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color: darkslateblue;
 }
 
 .guest-header li {
@@ -214,7 +214,7 @@ body, .app {
 .guest-header li a.active {
   color: cyan;
 }
-.guest-header div.take-right {
+.take-right {
   float: right !important;
 }
 .guest-header div.take-center {
@@ -245,11 +245,18 @@ body, .app {
 .mt-20 {
   margin-top: 20px !important;
 }
+
 .mt-50 {
   margin-top: 50px !important;
 }
 .mt-100 {
   margin-top: 100px !important;
+}
+.mr-5 {
+  margin-right: 5px !important;
+}
+.mr-10 {
+  margin-right: 10px !important;
 }
 input,
 select {
@@ -304,6 +311,14 @@ button:hover {
   color: white;
   margin-bottom: 15px;
 }
+
+.alert-success {
+  padding: 20px;
+  background-color: #24f400; /* Red */
+  color: white;
+  margin-bottom: 15px;
+}
+
 .text-center {
   text-align: center;
 }

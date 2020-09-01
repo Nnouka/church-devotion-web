@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import WelcomePage from "../guest/WelcomePage";
-import LoginPage from "../guest/LoginPage";
+import LoginPage from "../auth/LoginPage";
 import DashBoard from "../home/DashBoard";
 import {connect} from 'react-redux';
 import {receiveAuthedUser} from "../../actions/user";
@@ -42,9 +42,9 @@ class NavigationGraph extends Component {
                         <Route
                             exact
                             path='/login'
-                            render={() => {
+                            render={(props) => {
                                 handleSetActiveRoute('/login');
-                                return <LoginPage />;
+                                return <LoginPage {...props}/>;
                             }} />
                         <Route
                             exact
