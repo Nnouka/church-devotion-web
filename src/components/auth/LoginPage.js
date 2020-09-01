@@ -6,7 +6,8 @@ class LoginPage extends Component {
     render() {
         const {intendedUrl, location} = this.props;
         const getRedirectUrl = () => intendedUrl || '/dashboard';
-        const query = queryStr.parse(location.search);
+        const search = location !== undefined ? location.search : '';
+        const query = queryStr.parse(search);
         return (
             <div>
                 <LoginCard
