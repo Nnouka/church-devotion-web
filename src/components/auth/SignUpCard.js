@@ -52,7 +52,7 @@ class LoginCard extends Component {
                             <input type='email' name="email" placeholder={`${TRANS.trans('email', lang)}`}/>
                             <input type='password' name="password" placeholder={`${TRANS.trans('password', lang)}`}/>
                             <input type='text' name="phone" placeholder={`${TRANS.trans('phone_number', lang)}`}/>
-                            <button type="submit">{`${TRANS.trans('login', lang)}`}</button>
+                            <button type="submit">{`${TRANS.trans('sign_up', lang)}`}</button>
                         </form>
                     </div>
                 </div>
