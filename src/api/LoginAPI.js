@@ -1,6 +1,9 @@
 import * as AppUtils from '../utils/AppUtils';
 import {BASE_URL, userUrls} from './ApiUrls';
 import {getApiUserDetails} from './UserAPI'
+import {setAuthState} from "../actions/authState";
+import {hideLoading} from "react-redux-loading";
+import {receiveAuthedUser} from "../actions/user";
 
 let refreshTokenState = false;
 const accessToken = AppUtils.getAccessToken();
@@ -9,24 +12,34 @@ const headers = {
 }
 export const login = (credentials) => {
     console.log("initializing login...");
-    return fetch(`${BASE_URL}${userUrls.LOGIN}`, {
-        method: 'POST',
-        headers: {
-            ...headers,
-            'Content-Type': 'application/json',
-        }, 
-        body: JSON.stringify(credentials)
-     }).then(res => {
-         if(res.ok) {
-            return res.json().then(response => {
-                AppUtils.setAuthenticationState(true);
-                AppUtils.setAccessToken(response.access_token);
-                AppUtils.setRefreshToken(response.refresh_token);
-                AppUtils.setTokenExpiresIn(response.expires_in);
-            })} else {
-             console.log("login error")
-         }
-        }).catch(error => console.log(error));
+    return new Promise((resolve, reject) => {
+        fetch(`${BASE_URL}${userUrls.LOGIN}`, {
+            method: 'POST',
+            headers: {
+                ...headers,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(credentials)
+        }).then(res => {
+            if(res.ok) {
+                res.json().then(response => {
+                    AppUtils.setAuthenticationState(true);
+                    AppUtils.setAccessToken(response.access_token);
+                    AppUtils.setRefreshToken(response.refresh_token);
+                    AppUtils.setTokenExpiresIn(response.expires_in);
+                    getApiUserDetails().then(resp => {
+                        if (resp !== undefined) {
+                            AppUtils.setUserDetails(JSON.stringify(resp));
+                            resolve(resp);
+                        }
+                    })
+                })} else {
+                res.json().then(errorRes => {
+                    reject(errorRes);
+                })
+            }
+        }).catch(error => reject(error));
+    });
 }
 
 export const refreshToken = () => {

@@ -3,20 +3,47 @@ import * as TRANS from '../../utils/trans/TranslationService';
 import serializeForm from 'form-serialize';
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {handleLogin} from "../../actions/user";
+import {handleLogin, receiveAuthedUser} from "../../actions/user";
 import queryStr from "../../utils/queryStr";
+import {hideLoading, showLoading} from "react-redux-loading";
+import {login} from "../../api/LoginAPI";
+import {setAuthState} from "../../actions/authState";
 
 class LoginCard extends Component {
+    state = {
+        errorMsg: null
+    }
     handleSubmit = (e) => {
         e.preventDefault();
         const values = serializeForm(e.target, {hash: true});
         const {dispatch, history, redirectUrl} = this.props;
-        dispatch(handleLogin(values, () => history.push(redirectUrl)));
+        // show loading
+        dispatch(showLoading());
+        // login
+        login(values).then(
+            res => {
+                dispatch(setAuthState(true));
+                dispatch(receiveAuthedUser(res))
+                this.setState(() => ({errorMsg: null}));
+                dispatch(hideLoading());
+                history.push(redirectUrl);
+            }
+        ).catch(error => {
+            console.log(error);
+            if (error.code !== undefined) {
+                this.setState(() => ({errorMsg: error.code}));
+            } else {
+                this.setState(() => ({errorMsg: 'network_error'}))
+            }
+            dispatch(hideLoading());
+        });
+        // dispatch(handleLogin(values, () => history.push(redirectUrl)));
     }
     render() {
         const {lang} = this.props;
         const message = queryStr.decode(this.props.message);
         const regSuccess= this.props.regSuccess;
+        const {errorMsg} = this.state;
         return (
             <div>
                 <div className="card center mt-50">
@@ -30,6 +57,12 @@ class LoginCard extends Component {
                         regSuccess !== undefined &&
                         <div className='alert-success text-center'>
                             {TRANS.trans(regSuccess, lang)}
+                        </div>
+                    }
+                    {
+                        errorMsg !== null &&
+                        <div className='alert-danger text-center'>
+                            {TRANS.trans(errorMsg, lang)}
                         </div>
                     }
                     <div className="card-container">

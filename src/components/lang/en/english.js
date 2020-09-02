@@ -252,6 +252,8 @@ export const map_en = new Map([
   ['restore_failed', ['Failed to restore enrollment with cause']],
   ['login_gist', ['You are logged in']],
   ['reg_verified', ['Email Verified Successfully. Please Login!']],
+  ['network_error', ['We are having difficulty reaching the server. Please check your network connection.']],
+  ['BAD_CREDENTIALS', ['Invalid user Credentials. Please try again.']],
 
 
 ]);

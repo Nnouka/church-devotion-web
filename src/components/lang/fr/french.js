@@ -250,4 +250,6 @@ export const map_fr = new Map([
   ['restore_failed', ['Impossible de restaurer l\'inscription avec cause']],
   ['login_gist', ['Vous êtes connecté']],
   ['reg_verified', ['Email vérifié avec succès. Veuillez vous connecter!']],
+  ['network_error', ['We are having difficulty reaching the server. Please check your network connection.']],
+  ['BAD_CREDENTIALS', ['Invalid user Credentials. Please try again.']],
 ]);
