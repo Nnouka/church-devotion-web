@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import * as TRANS from '../../utils/trans/TranslationService';
 import {connect} from "react-redux";
-import authenticator from '../auth/Authenticator';
+import authenticator from '../../components/higher_order/Authenticator';
 class DashBoard extends Component {
     render() {
         const {lang, user} = this.props;

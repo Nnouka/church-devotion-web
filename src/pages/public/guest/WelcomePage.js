@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import * as TRANS from '../../utils/trans/TranslationService';
+import * as TRANS from '../../../utils/trans/TranslationService';
 import {connect} from 'react-redux';
 
 class WelcomePage extends Component{

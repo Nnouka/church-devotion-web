@@ -1,6 +1,6 @@
 
-import {map_en} from '../../components/lang/en/english';
-import {map_fr} from '../../components/lang/fr/french';
+import {map_en} from './en/english';
+import {map_fr} from './fr/french';
 import * as App from '../AppUtils'; 
 
 const englishMap = map_en;
@@ -14,7 +14,7 @@ const getLocaleMap = (locale) => {
     }
 }
 const getChoiceMapValue = (haystack, key, choice = 0) => { 
-  // TODO: ensure haystat is a map
+  // TODO: ensure haystack is a map
   // key is string
   // choice is number
   if (haystack.has(key)) {

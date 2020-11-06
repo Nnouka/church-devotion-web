@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import LoginCard from './LoginCard';
-import queryStr from "../../utils/queryStr";
+import LoginCard from '../../../components/auth/LoginCard';
+import queryStr from "../../../utils/queryStr";
 
 class LoginPage extends Component {
     render() {

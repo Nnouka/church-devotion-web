@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {connect} from 'react-redux';
-import LoginPage from "./LoginPage";
+import LoginPage from "../../pages/public/auth/LoginPage";
 
 export default function (RequireAuthComponent, intendedUrl = '/dashboard') {
     class Authenticator extends Component {

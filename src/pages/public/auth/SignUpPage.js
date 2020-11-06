@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import SignUpCard from "./SignUpCard";
+import SignUpCard from "../../../components/auth/SignUpCard";
 
 class SignUpPage extends Component {
     render() {

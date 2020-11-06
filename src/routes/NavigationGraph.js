@@ -1,18 +1,18 @@
 import React, {Component} from "react";
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import WelcomePage from "../guest/WelcomePage";
-import LoginPage from "../auth/LoginPage";
-import DashBoard from "../home/DashBoard";
+import WelcomePage from "../pages/public/guest/WelcomePage";
+import LoginPage from "../pages/public/auth/LoginPage";
+import DashBoard from "../pages/home/DashBoard";
 import {connect} from 'react-redux';
-import {receiveAuthedUser} from "../../actions/user";
-import {getAuthState, getLocale, getUserDetails} from "../../utils/AppUtils";
-import {setAuthState} from "../../actions/authState";
+import {receiveAuthedUser} from "../actions/user";
+import {getAuthState, getLocale, getUserDetails} from "../utils/AppUtils";
+import {setAuthState} from "../actions/authState";
 import {Container} from '@material-ui/core';
-import NavHeader from "./NavHeader";
-import {setActiveRoute} from "../../actions/activeRoute";
-import {setCurrentLang} from "../../actions/currentLang";
-import _404 from "../errors/_404";
-import SignUpPage from "../auth/SignUpPage";
+import NavHeader from "../components/shared/NavHeader";
+import {setActiveRoute} from "../actions/activeRoute";
+import {setCurrentLang} from "../actions/currentLang";
+import _404 from "../pages/errors/_404";
+import SignUpPage from "../pages/public/auth/SignUpPage";
 
 class NavigationGraph extends Component {
     componentDidMount() {
