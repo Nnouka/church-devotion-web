@@ -9,7 +9,7 @@ class LoginPage extends Component {
         const search = location !== undefined ? location.search : '';
         const query = queryStr.parse(search);
         return (
-            <div>
+            <div className="mt-50">
                 <LoginCard
                     redirectUrl={getRedirectUrl()}
                     message={query.m}

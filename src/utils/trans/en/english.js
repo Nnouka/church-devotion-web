@@ -254,6 +254,7 @@ export const map_en = new Map([
   ['reg_verified', ['Email Verified Successfully. Please Login!']],
   ['network_error', ['We are having difficulty reaching the server. Please check your network connection.']],
   ['BAD_CREDENTIALS', ['Invalid user Credentials. Please try again.']],
+  ['public_gist', ['The churches of Christ Salute you']],
 
 
 ]);

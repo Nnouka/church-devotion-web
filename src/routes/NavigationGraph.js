@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import WelcomePage from "../pages/public/guest/WelcomePage";
+import WelcomePage from "../pages/home/WelcomePage";
 import LoginPage from "../pages/public/auth/LoginPage";
 import DashBoard from "../pages/home/DashBoard";
 import {connect} from 'react-redux';
@@ -14,6 +14,7 @@ import {setCurrentLang} from "../actions/currentLang";
 import _404 from "../pages/errors/_404";
 import SignUpPage from "../pages/public/auth/SignUpPage";
 import AppBarWithSearch from "../components/uis/AppBarWithSearch";
+import LandingPage from "../pages/public/guest/LandingPage";
 
 class NavigationGraph extends Component {
     componentDidMount() {
@@ -42,7 +43,7 @@ class NavigationGraph extends Component {
                             render={
                                 () => {
                                     handleSetActiveRoute('/');
-                                    return authed ? <WelcomePage /> : <LoginPage />
+                                    return authed ? <WelcomePage /> : <LandingPage />
                                 }
                             }
                         />

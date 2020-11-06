@@ -7,19 +7,21 @@ import {handleSignUp} from "../../actions/user";
 import {hideLoading, showLoading} from "react-redux-loading";
 import {registerUser} from "../../api/SignUpAPI";
 import {btn, input} from "../common/Styles";
+import {secondaryBg, white} from "../../utils/AppColors";
 
-class LoginCard extends Component {
+class SignUpCard extends Component {
     state = {
         errorMsg: null
     }
     handleSubmit = (e) => {
         e.preventDefault();
         const values = serializeForm(e.target, {hash: true});
-        const {dispatch, history, lang} = this.props;
+        const {dispatch, history, lang, onDialogClose} = this.props;
         dispatch(showLoading());
         registerUser(values).then(
             () => {
                 this.setState(() => ({errorMsg: null}));
+                onDialogClose && onDialogClose();
                 history.push(`/login?m=${btoa(TRANS.trans('registration_success', lang))}`);
                 dispatch(hideLoading());
             }
@@ -39,7 +41,7 @@ class LoginCard extends Component {
         const {errorMsg} = this.state;
         return (
             <div>
-                <div className="card center mt-50">
+                <div className="card center" style={{backgroundColor: white}}>
                     {
                         errorMsg !== null &&
                         <div className='alert-danger text-center'>
@@ -69,4 +71,4 @@ function mapStateToProps({currentLang}, props) {
     }
 }
 
-export default withRouter(connect(mapStateToProps)(LoginCard));
+export default withRouter(connect(mapStateToProps)(SignUpCard));

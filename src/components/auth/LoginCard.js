@@ -9,15 +9,54 @@ import {hideLoading, showLoading} from "react-redux-loading";
 import {login} from "../../api/LoginAPI";
 import {setAuthState} from "../../actions/authState";
 import {btn, input} from "../common/Styles";
+import {lime, primary, white} from "../../utils/AppColors";
+import Divider from "@material-ui/core/Divider";
+import Dialog from "@material-ui/core/Dialog";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContent from "@material-ui/core/DialogContent";
+import CloseIcon from '@material-ui/icons/Close'
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogActions from "@material-ui/core/DialogActions";
+import SignUpCard from "./SignUpCard";
+import {makeStyles} from "@material-ui/core/styles";
+import IconButton from "@material-ui/core/IconButton";
+const useStyles = makeStyles((theme) => ({
+    closeButton: {
+        position: 'absolute',
+        right: theme.spacing(1),
+        top: theme.spacing(1),
+        color: theme.palette.grey[500],
+    },
+}));
+function LoginCard(props) {
+    const [open, setOpen] = React.useState(false);
+    const [errorMsg, setErrorMsg] = React.useState(null);
+    const classes = useStyles();
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
 
-class LoginCard extends Component {
-    state = {
-        errorMsg: null
+    const handleClose = () => {
+        setOpen(false);
+    };
+    const renderSignup = () => {
+        return (
+            <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+                <DialogTitle id="form-dialog-title">
+                    <IconButton aria-label="close" className={classes.closeButton} onClick={handleClose}>
+                        <CloseIcon />
+                    </IconButton>
+                </DialogTitle>
+                <DialogContent>
+                    <SignUpCard onDialogClose={() => handleClose()} />
+                </DialogContent>
+            </Dialog>
+        );
     }
-    handleSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         const values = serializeForm(e.target, {hash: true});
-        const {dispatch, history, redirectUrl} = this.props;
+        const {dispatch, history, redirectUrl} = props;
         // show loading
         dispatch(showLoading());
         // login
@@ -25,59 +64,65 @@ class LoginCard extends Component {
             res => {
                 dispatch(setAuthState(true));
                 dispatch(receiveAuthedUser(res))
-                this.setState(() => ({errorMsg: null}));
+                setErrorMsg(null);
                 dispatch(hideLoading());
                 history.push(redirectUrl);
             }
         ).catch(error => {
             console.log(error);
             if (error.code !== undefined) {
-                this.setState(() => ({errorMsg: error.code}));
+                setErrorMsg(error.code);
             } else {
-                this.setState(() => ({errorMsg: 'network_error'}))
+                setErrorMsg('network_error');
             }
             dispatch(hideLoading());
         });
         // dispatch(handleLogin(values, () => history.push(redirectUrl)));
     }
-    render() {
-        const {lang} = this.props;
-        const message = queryStr.decode(this.props.message);
-        const regSuccess= this.props.regSuccess;
-        const {errorMsg} = this.state;
-        return (
-            <div>
-                <div className="card center mt-50">
-                    {
-                        message !== undefined &&
-                        <div className='alert-success text-center'>
-                            {message}
-                        </div>
-                    }
-                    {
-                        regSuccess !== undefined &&
-                        <div className='alert-success text-center'>
-                            {TRANS.trans(regSuccess, lang)}
-                        </div>
-                    }
-                    {
-                        errorMsg !== null &&
-                        <div className='alert-danger text-center'>
-                            {TRANS.trans(errorMsg, lang)}
-                        </div>
-                    }
-                    <div className="card-container">
-                        <h2 className="card-title">{`${TRANS.trans('login', lang)}`}</h2>
-                        <form onSubmit={(event) => this.handleSubmit(event)}>
-                            <input style={input} type='text' name="username" placeholder={`${TRANS.trans('email', lang)}`}/>
-                            <input style={input} type='password' name="password" placeholder={`${TRANS.trans('password', lang)}`}/>
-                            <button type="submit" style={btn}>{`${TRANS.trans('login', lang)}`}</button>
-                        </form>
+
+    const {lang, regSuccess} = props;
+    const message = queryStr.decode(props.message);
+    return (
+        <div>
+            <div className="card center" style={{backgroundColor: white}}>
+                {
+                    message !== undefined &&
+                    <div className='alert-success text-center'>
+                        {message}
                     </div>
+                }
+                {
+                    regSuccess !== undefined &&
+                    <div className='alert-success text-center'>
+                        {TRANS.trans(regSuccess, lang)}
+                    </div>
+                }
+                {
+                    errorMsg !== null &&
+                    <div className='alert-danger text-center'>
+                        {TRANS.trans(errorMsg, lang)}
+                    </div>
+                }
+                <div className="card-container">
+                    <h2 className="card-title">{`${TRANS.trans('login', lang)}`}</h2>
+                    <form onSubmit={(event) => handleSubmit(event)}>
+                        <input style={input} type='text' name="username" placeholder={`${TRANS.trans('email', lang)}`}/>
+                        <input style={input} type='password' name="password" placeholder={`${TRANS.trans('password', lang)}`}/>
+                        <button type="submit" style={{...btn, backgroundColor: primary, color: white}}>{`${TRANS.trans('login', lang)}`}</button>
+                    </form>
+                    <br />
+                    <hr />
+                    <button type="button"
+                            style={{...btn, backgroundColor: lime, color: white}}
+                            onClick={handleClickOpen}
+                    >{`${TRANS.trans('signup', lang)}`}</button>
+                    {
+                        renderSignup()
+                    }
                 </div>
-            </div>   
-        );
-    }
+            </div>
+        </div>
+    );
 }
 
 function mapStateToProps({currentLang}, props) {

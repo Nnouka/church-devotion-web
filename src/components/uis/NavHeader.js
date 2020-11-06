@@ -20,7 +20,7 @@ class NavHeader extends Component {
             AppUtils.logout();
             dispatch(setAuthState(false));
             dispatch(receiveAuthedUser(null));
-            history.push('/login');
+            history.push('/');
         }
         return (
             <header className="guest-header">

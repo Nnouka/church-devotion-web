@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
-import * as TRANS from '../../../utils/trans/TranslationService';
+import * as TRANS from '../../utils/trans/TranslationService';
 import {connect} from 'react-redux';
 
 class WelcomePage extends Component{
     render() {
         const {currentLang} = this.props;
-        console.log("Welcome", currentLang);
         return (
             <div>
                 <div className="card center mt-50">
