@@ -1,6 +1,7 @@
 import React, {Fragment, useState} from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import logo from '../../logo.svg';
+import {primary} from '../../utils/AppColors';
 import {
     AppBar,
     Avatar,
@@ -81,7 +82,7 @@ export default function AppBarWithSearch({title, children, ...props}) {
 
     return (
         <div className={classes.grow}>
-            <AppBar position={trigger ? 'fixed' : 'static'} style={{backgroundColor: '#436c8a', boxShadow: "none"}}>
+            <AppBar position={trigger ? 'fixed' : 'static'} style={{backgroundColor: primary, boxShadow: "none"}}>
                 <Toolbar>
                     <Avatar style={{marginRight: 10, width: 60, borderRadius: 50}}>
                         <img src={logo} width={60} className="App-logo" alt="logo" />
@@ -149,7 +150,7 @@ const useStyles = makeStyles((theme) => ({
         // marginRight: theme.spacing(2),
         marginLeft: 0,
         width: 'auto',
-        border: '1px solid gray',
+        border: 'none',
         [theme.breakpoints.up('sm')]: {
             marginLeft: theme.spacing(3),
             width: 'auto',
