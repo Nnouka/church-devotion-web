@@ -42,7 +42,7 @@ class NavigationGraph extends Component {
                             render={
                                 () => {
                                     handleSetActiveRoute('/');
-                                    return <WelcomePage />
+                                    return authed ? <WelcomePage /> : <LoginPage />
                                 }
                             }
                         />
