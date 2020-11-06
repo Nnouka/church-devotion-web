@@ -10,13 +10,10 @@ import {login} from "../../api/LoginAPI";
 import {setAuthState} from "../../actions/authState";
 import {btn, input} from "../common/Styles";
 import {lime, primary, white} from "../../utils/AppColors";
-import Divider from "@material-ui/core/Divider";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
-import CloseIcon from '@material-ui/icons/Close'
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogActions from "@material-ui/core/DialogActions";
+import CloseIcon from '@material-ui/icons/Close';
 import SignUpCard from "./SignUpCard";
 import {makeStyles} from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";

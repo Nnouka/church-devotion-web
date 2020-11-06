@@ -63,7 +63,7 @@ function mapStateToProps({currentLang, user, authState, activeRoute}, props) {
         user,
         authState,
         active: {
-            route: activeRoute
+            route: activeRoute[0]
         },
         ...props
     }

@@ -233,6 +233,44 @@ body, .app {
   background-color: #4b7796;
 }
 
+.settings-menu-item {
+  cursor: pointer;
+  max-width: 50px;
+  max-height: 50px;
+  align-content: center;
+  text-align: center;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 50%;
+  background-color: #c6c8cc;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  display: inline-flex;
+}
+.settings-menu-item:hover {
+  background-color: #9d9fa3;
+  border-radius: 50%;
+}
+.settings-menu-title {
+  font-size: larger;
+  font-weight: bold;
+  display: inline-flex;
+}
+.settings-menu {
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 0;
+  width: 100%;
+}
+.settings-menu:hover {
+  background-color: #9d9fa3;
+}
+.settings-menu-text {
+  font-size: large;
+  font-weight: bold;
+  display: inline-flex;
+}
+
 .card {
   /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);

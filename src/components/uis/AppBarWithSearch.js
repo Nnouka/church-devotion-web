@@ -19,16 +19,20 @@ import SearchIcon from '@material-ui/icons/Search';
 // import { AiFillCloseSquare } from 'react-icons/ai';
 // import {FaMapMarkerAlt} from 'react-icons/fa'
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
+import {withRouter} from "react-router-dom";
+import {connect} from "react-redux";
+import {SETTINGS} from "../../routes/webUri";
 
 
 
-export default function AppBarWithSearch({title, children, ...props}) {
+function AppBarWithSearch({title, children, ...props}) {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
     const [openDrawer, setOpenDrawer] = useState(false);
 
     const isMenuOpen = Boolean(anchorEl);
+    const {history} = props;
 
     const trigger = useScrollTrigger({disableHysteresis: true, threshold: 50});
 
@@ -112,7 +116,7 @@ export default function AppBarWithSearch({title, children, ...props}) {
                             aria-label="show more"
                             aria-controls={mobileMenuId}
                             aria-haspopup="true"
-                            onClick={() => setOpenDrawer(true)}
+                            onClick={() => history.push(SETTINGS)}
                             color="inherit"
                         >
                             <MenuIcon style={{color: 'gray'}}/>
@@ -126,6 +130,14 @@ export default function AppBarWithSearch({title, children, ...props}) {
     );
 }
 
+function mapStateToProps({currentLang}, props) {
+    return {
+        currentLang,
+        ...props
+    }
+}
+
+export default withRouter(connect(mapStateToProps)(AppBarWithSearch));
 const useStyles = makeStyles((theme) => ({
     grow: {
         flexGrow: 1,
