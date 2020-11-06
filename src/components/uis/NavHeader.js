@@ -8,6 +8,10 @@ import * as AppUtils from '../../utils/AppUtils';
 import {setAuthState} from "../../actions/authState";
 import {receiveAuthedUser} from "../../actions/user";
 import {withRouter} from 'react-router-dom';
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
 
 class NavHeader extends Component {
     render() {
@@ -21,8 +25,7 @@ class NavHeader extends Component {
         return (
             <header className="guest-header">
                 <ul>
-                    <li><img src={logo} style={{width: 100}} className="App-logo" alt="logo" /></li>
-                    <li className="guest-header-text">{TRANS.trans('app_name', lang)}</li>
+                    {/*<li className="guest-header-text">{TRANS.trans('app_name', lang)}</li>*/}
                     <li><Link to="/" className={`${active.route === '/' && 'active'}`}>{TRANS.trans('home', lang)}</Link></li>
                     <div className="take-right">
                         {

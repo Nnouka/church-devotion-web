@@ -1,4 +1,5 @@
 import React, {Component, Fragment} from 'react';
+import '../../App.css';
 import NavigationGraph from '../../routes/NavigationGraph';
 import LanguageChanger from "../lang/LanguageChanger";
 import LoadingBar from "react-redux-loading";

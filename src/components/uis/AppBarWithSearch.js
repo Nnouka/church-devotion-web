@@ -1,6 +1,6 @@
 import React, {Fragment, useState} from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
-import logo from '../../reo_logo.jpeg';
+import logo from '../../logo.svg';
 import {
     AppBar,
     Avatar,
@@ -15,8 +15,8 @@ import {
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-import { AiFillCloseSquare } from 'react-icons/ai';
-import {FaMapMarkerAlt} from 'react-icons/fa'
+// import { AiFillCloseSquare } from 'react-icons/ai';
+// import {FaMapMarkerAlt} from 'react-icons/fa'
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 
 
@@ -70,7 +70,7 @@ export default function AppBarWithSearch({title, children, ...props}) {
                 onBackdropClick={() => setOpenDrawer(false)}>
             <List>
                 <ListItem onClick={() => setOpenDrawer(false)}>
-                    <AiFillCloseSquare style={{width: 25, height: 25, position: 'absolute', right: 0, cursor: 'pointer'}} />
+                    {/*<AiFillCloseSquare style={{width: 25, height: 25, position: 'absolute', right: 0, cursor: 'pointer'}} />*/}
                 </ListItem>
                 <ListItem>
                     Drawer
@@ -81,17 +81,10 @@ export default function AppBarWithSearch({title, children, ...props}) {
 
     return (
         <div className={classes.grow}>
-            <AppBar position='static' style={{backgroundColor: '#436c8a', paddingTop: 0}}>
-                <Toolbar style={{paddingTop: 0}}>
-                    <div style={{display: "flex", color: "white"}}>
-                        <FaMapMarkerAlt style={{marginRight: 10}}/> Wonganga, Small Soppo Buea, Cameroon
-                    </div>
-                </Toolbar>
-            </AppBar>
-            <AppBar position={trigger ? 'fixed' : 'static'} style={{backgroundColor: 'white', boxShadow: "none"}}>
+            <AppBar position={trigger ? 'fixed' : 'static'} style={{backgroundColor: '#436c8a', boxShadow: "none"}}>
                 <Toolbar>
-                    <Avatar variant="square" style={{marginRight: 10, width: 60}}>
-                        <img src={logo} alt="REO Logo" width={60}/>
+                    <Avatar style={{marginRight: 10, width: 60, borderRadius: 50}}>
+                        <img src={logo} width={60} className="App-logo" alt="logo" />
                     </Avatar>
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>
@@ -147,8 +140,8 @@ const useStyles = makeStyles((theme) => ({
     },
     search: {
         position: 'relative',
-        borderRadius: 0,
-        color: 'gray',
+        borderRadius: 50,
+        color: "white",
         backgroundColor: fade(theme.palette.common.white, 0.15),
         '&:hover': {
             backgroundColor: fade(theme.palette.common.white, 0.25),
@@ -170,7 +163,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        color: 'gray',
+        color: "white",
     },
     inputRoot: {
         color: 'inherit',

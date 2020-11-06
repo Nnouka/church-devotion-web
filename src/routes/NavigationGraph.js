@@ -8,11 +8,12 @@ import {receiveAuthedUser} from "../actions/user";
 import {getAuthState, getLocale, getUserDetails} from "../utils/AppUtils";
 import {setAuthState} from "../actions/authState";
 import {Container} from '@material-ui/core';
-import NavHeader from "../components/shared/NavHeader";
+import NavHeader from "../components/uis/NavHeader";
 import {setActiveRoute} from "../actions/activeRoute";
 import {setCurrentLang} from "../actions/currentLang";
 import _404 from "../pages/errors/_404";
 import SignUpPage from "../pages/public/auth/SignUpPage";
+import AppBarWithSearch from "../components/uis/AppBarWithSearch";
 
 class NavigationGraph extends Component {
     componentDidMount() {
@@ -27,7 +28,9 @@ class NavigationGraph extends Component {
         const handleSetActiveRoute = (route) => dispatch(setActiveRoute(route));
         return (
             <Router>
-                <NavHeader />
+                <AppBarWithSearch >
+                    <NavHeader />
+                </AppBarWithSearch>
                 <Container>
                     <Switch>
                         <Route
