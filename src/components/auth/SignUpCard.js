@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import {handleSignUp} from "../../actions/user";
 import {hideLoading, showLoading} from "react-redux-loading";
 import {registerUser} from "../../api/SignUpAPI";
+import {btn, input} from "../common/Styles";
 
 class LoginCard extends Component {
     state = {
@@ -48,11 +49,11 @@ class LoginCard extends Component {
                     <div className="card-container">
                         <h2 className="card-title">{`${TRANS.trans('sign_up', lang)}`}</h2>
                         <form onSubmit={(event) => this.handleSubmit(event)}>
-                            <input type='text' name="fullName" placeholder={`${TRANS.trans('full_name', lang)}`}/>
-                            <input type='email' name="email" placeholder={`${TRANS.trans('email', lang)}`}/>
-                            <input type='password' name="password" placeholder={`${TRANS.trans('password', lang)}`}/>
-                            <input type='text' name="phone" placeholder={`${TRANS.trans('phone_number', lang)}`}/>
-                            <button type="submit">{`${TRANS.trans('sign_up', lang)}`}</button>
+                            <input style={input} type='text' name="fullName" placeholder={`${TRANS.trans('full_name', lang)}`}/>
+                            <input style={input} type='email' name="email" placeholder={`${TRANS.trans('email', lang)}`}/>
+                            <input style={input} type='password' name="password" placeholder={`${TRANS.trans('password', lang)}`}/>
+                            <input style={input} type='text' name="phone" placeholder={`${TRANS.trans('phone_number', lang)}`}/>
+                            <button  type="submit" style={btn}>{`${TRANS.trans('sign_up', lang)}`}</button>
                         </form>
                     </div>
                 </div>

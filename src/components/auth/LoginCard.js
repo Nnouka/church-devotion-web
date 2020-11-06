@@ -8,6 +8,7 @@ import queryStr from "../../utils/queryStr";
 import {hideLoading, showLoading} from "react-redux-loading";
 import {login} from "../../api/LoginAPI";
 import {setAuthState} from "../../actions/authState";
+import {btn, input} from "../common/Styles";
 
 class LoginCard extends Component {
     state = {
@@ -68,9 +69,9 @@ class LoginCard extends Component {
                     <div className="card-container">
                         <h2 className="card-title">{`${TRANS.trans('login', lang)}`}</h2>
                         <form onSubmit={(event) => this.handleSubmit(event)}>
-                            <input type='text' name="username" placeholder={`${TRANS.trans('email', lang)}`}/>
-                            <input type='password' name="password" placeholder={`${TRANS.trans('password', lang)}`}/>
-                            <button type="submit">{`${TRANS.trans('login', lang)}`}</button>
+                            <input style={input} type='text' name="username" placeholder={`${TRANS.trans('email', lang)}`}/>
+                            <input style={input} type='password' name="password" placeholder={`${TRANS.trans('password', lang)}`}/>
+                            <button type="submit" style={btn}>{`${TRANS.trans('login', lang)}`}</button>
                         </form>
                     </div>
                 </div>

@@ -24,13 +24,16 @@ class NavigationGraph extends Component {
     }
 
     render() {
-        const {dispatch} = this.props;
+        const {dispatch, authed} = this.props;
         const handleSetActiveRoute = (route) => dispatch(setActiveRoute(route));
         return (
             <Router>
-                <AppBarWithSearch >
-                    <NavHeader />
-                </AppBarWithSearch>
+                {
+                    authed &&
+                    <AppBarWithSearch >
+                        <NavHeader />
+                    </AppBarWithSearch>
+                }
                 <Container>
                     <Switch>
                         <Route
@@ -75,5 +78,10 @@ class NavigationGraph extends Component {
         );
     }
 }
-
-export default connect()(NavigationGraph);
+function mapStateToProps({authState}, props) {
+    return {
+        authed: authState,
+        ...props
+    }
+}
+export default connect(mapStateToProps)(NavigationGraph);
