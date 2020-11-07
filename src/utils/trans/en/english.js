@@ -17,7 +17,7 @@ export const map_en = new Map([
   ["login", ['Login']],
   ["logout", ['Logout']],
   ["edit", ['edit']],
-  ["ph_search", ['What are you looking for?']],
+  ["ph_search", ['Search']],
   ['st_service', ['at your services']],
   ['page_not_found', ['Page Not Found']],
   ['page_not_found_text', ['The page you are trying to access is not found on this server']],

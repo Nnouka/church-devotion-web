@@ -1,6 +1,6 @@
 import React, {Fragment, useState} from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
-import logo from '../../logos/logo-mini.png';
+import logo from '../../logos/logo150x120.png';
 import {primary} from '../../utils/AppColors';
 import {
     AppBar,
@@ -16,12 +16,10 @@ import {
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-// import { AiFillCloseSquare } from 'react-icons/ai';
-// import {FaMapMarkerAlt} from 'react-icons/fa'
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
-import {withRouter} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import {connect} from "react-redux";
-import {SETTINGS} from "../../routes/webUri";
+import {BASE, SETTINGS} from "../../routes/webUri";
 import * as TRANS from "../../utils/trans/TranslationService";
 
 
@@ -89,15 +87,17 @@ function AppBarWithSearch({title, children, ...props}) {
         <div className={classes.grow}>
             <AppBar position={trigger ? 'fixed' : 'static'} style={{backgroundColor: primary, boxShadow: "none"}}>
                 <Toolbar>
-                    <Avatar style={{marginRight: 10, width: 60, borderRadius: 50}}>
-                        <img src={logo} width={60} alt="logo" />
-                    </Avatar>
+                    <Link to={BASE} >
+                        <Avatar style={{marginRight: 10, width: 60, borderRadius: 50, paddingTop: 8}}>
+                            <img src={logo} style={{width: 60}} alt="logo" />
+                        </Avatar>
+                    </Link>
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>
                             <SearchIcon />
                         </div>
                         <InputBase
-                            placeholder={TRANS.trans('ph_search', currentLang)}
+                            placeholder={`${TRANS.trans('ph_search', currentLang)} ...`}
                             classes={{
                                 root: classes.inputRoot,
                                 input: classes.inputInput,

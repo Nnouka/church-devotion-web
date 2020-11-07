@@ -17,7 +17,7 @@ export const map_fr = new Map([
   ["login", ['Se Connecter']],
   ["logout", ['Se Déconnecter']],
   ["edit", ['éditer']],
-  ["ph_search", ['Que cherchez-vous?']],
+  ["ph_search", ['Cherchez']],
   ['st_service', ['à vos services']],
   ['page_not_found', ['Page non trouvée']],
   ['page_not_found_text', ['La page à laquelle vous essayez d\'accéder est introuvable sur ce serveur']],

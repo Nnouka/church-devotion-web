@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import logo from '../../logo.svg';
 import '../../index.css';
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
