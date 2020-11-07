@@ -9,6 +9,7 @@ import {primary, white} from "../../../utils/AppColors";
 import logo from "../../../logos/logo-mini.png";
 import LanguageChanger from "../../../components/lang/LanguageChanger";
 import LoadingBar from "react-redux-loading";
+import queryStr from "../../../utils/queryStr";
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -26,8 +27,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function LandingPage(props){
-    const {currentLang} = props;
+    const {currentLang, intendedUrl, location} = props;
     const classes = useStyles();
+    const getRedirectUrl = () => intendedUrl || '/dashboard';
+    const search = location !== undefined ? location.search : '';
+    const query = queryStr.parse(search);
     return (
         <div className={classes.root}>
             <LoadingBar style={{backgroundColor: primary}}/>
@@ -47,7 +51,11 @@ function LandingPage(props){
                     </div>
                 </Grid>
                 <Grid item xs={12} sm={12} md={6}>
-                    <LoginCard />
+                    <LoginCard
+                        redirectUrl={getRedirectUrl()}
+                        message={query.m}
+                        regSuccess={query.r}
+                    />
                 </Grid>
             </Grid>
         </div>

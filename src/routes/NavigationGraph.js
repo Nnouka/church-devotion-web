@@ -19,16 +19,14 @@ import {BASE, DASHBOARD, LOGIN, SETTINGS, SIGN_UP} from "./webUri";
 import SettingsDrawer from "./SettingsDrawer";
 
 function NavigationGraph (props) {
+    const {dispatch, authed} = props;
     useEffect(
         () => {
-            const {dispatch} = props;
             dispatch(setAuthState(getAuthState()));
             dispatch(receiveAuthedUser(getUserDetails()));
             dispatch(setCurrentLang(getLocale()));
         }
     );
-
-    const {dispatch, authed} = props;
     const handleSetActiveRoute = (route) => dispatch(setActiveRoute(route));
     return (
         <Router>
