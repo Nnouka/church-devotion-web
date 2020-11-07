@@ -1,4 +1,4 @@
-import React, {Component, useEffect} from "react";
+import React, {useEffect} from "react";
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import WelcomePage from "../pages/home/WelcomePage";
 import LoginPage from "../pages/public/auth/LoginPage";
@@ -16,7 +16,7 @@ import SignUpPage from "../pages/public/auth/SignUpPage";
 import AppBarWithSearch from "../components/uis/AppBarWithSearch";
 import LandingPage from "../pages/public/guest/LandingPage";
 import {BASE, DASHBOARD, LOGIN, SETTINGS, SIGN_UP} from "./webUri";
-import SettingsDrawer from "../components/shared/SettingsDrawer";
+import SettingsDrawer from "./SettingsDrawer";
 
 function NavigationGraph (props) {
     useEffect(
@@ -25,7 +25,7 @@ function NavigationGraph (props) {
             dispatch(setAuthState(getAuthState()));
             dispatch(receiveAuthedUser(getUserDetails()));
             dispatch(setCurrentLang(getLocale()));
-        }, []
+        }
     );
 
     const {dispatch, authed} = props;
@@ -62,7 +62,7 @@ function NavigationGraph (props) {
                         path={DASHBOARD}
                         render={
                             () => {
-                                handleSetActiveRoute(DashBoard);
+                                handleSetActiveRoute(DASHBOARD);
                                 return <DashBoard />
                             }
                         } />

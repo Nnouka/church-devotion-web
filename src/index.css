@@ -204,7 +204,7 @@ body, .app {
   float: left;
 }
 
-.guest-header li a {
+.guest-header li a, .logout-div {
   display: block;
   color: white;
   text-align: center;
@@ -229,7 +229,7 @@ body, .app {
 }
 
 /* Change the link color to #111 (black) on hover */
-.guest-header li a:hover {
+.guest-header li a:hover, .logout-div:hover {
   background-color: #4b7796;
 }
 
@@ -246,6 +246,9 @@ body, .app {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   display: inline-flex;
+}
+.settings-menu.active {
+  background-color: #a8c8cc;
 }
 .settings-menu-item:hover {
   background-color: #9d9fa3;
@@ -269,6 +272,9 @@ body, .app {
   font-size: large;
   font-weight: bold;
   display: inline-flex;
+}
+.logout-div {
+  cursor: pointer;
 }
 
 .card {
@@ -347,17 +353,17 @@ button:hover {
   padding: 2px 16px;
 }
 .alert-danger {
-  padding: 20px;
   background-color: #f44336; /* Red */
-  color: white;
-  margin-bottom: 15px;
 }
-
+.alert-danger,
 .alert-success {
-  padding: 20px;
-  background-color: #24f400; /* Red */
-  color: white;
   margin-bottom: 15px;
+  padding: 20px;
+  color: white;
+  border-radius: 10px;
+}
+.alert-success {
+  background-color: #24f400; /* lime */
 }
 
 .text-center {

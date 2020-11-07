@@ -8,10 +8,9 @@ import * as AppUtils from '../../utils/AppUtils';
 import {setAuthState} from "../../actions/authState";
 import {receiveAuthedUser} from "../../actions/user";
 import {withRouter} from 'react-router-dom';
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
+import {Dashboard, ArrowRight, Home} from '@material-ui/icons';
+import {Tooltip} from '@material-ui/core';
+import {BASE, DASHBOARD, LOGIN, SIGN_UP} from "../../routes/webUri";
 
 class NavHeader extends Component {
     render() {
@@ -26,29 +25,39 @@ class NavHeader extends Component {
             <header className="guest-header">
                 <ul>
                     {/*<li className="guest-header-text">{TRANS.trans('app_name', lang)}</li>*/}
-                    <li><Link to="/" className={`${active.route === '/' && 'active'}`}>{TRANS.trans('home', lang)}</Link></li>
+                    <li><Link to={BASE} className={`${active.route === BASE && 'active'}`}>
+                        <Tooltip title={TRANS.trans('home', lang)}>
+                            <Home />
+                        </Tooltip>
+
+                    </Link></li>
                     <div className="take-right">
                         {
                             user !== null &&
-                            <li><Link to="/dashboard" className={`${active.route === '/dashboard' && 'active'}`}>
-                                {user.fullName}
+                            <li>
+                                <Link to={DASHBOARD} className={`${active.route === DASHBOARD && 'active'}`}>
+                                <Tooltip title={user.fullName}>
+                                    <Dashboard />
+                                </Tooltip>
                             </Link>
                             </li>
                         }
                         {
                             authState &&
                             <li>
-                                <a href="#logout" className={`${active.route === '/logout' && 'active'}`} onClick={() => logout()}>
-                                    {TRANS.trans('logout', lang)}
-                                </a>
+                                <div className="logout-div" onClick={() => logout()}>
+                                    <Tooltip title={TRANS.trans('logout', lang)} >
+                                        <ArrowRight />
+                                    </Tooltip>
+                                </div>
                             </li>
                         }
                     </div>
                     {
                         !authState &&
                         <div className="take-right">
-                            <li><Link to="/login" className={`${active.route === '/login' && 'active'}`}>{TRANS.trans('login', lang)}</Link></li>
-                            <li><Link to="/signup" className={`${active.route === '/signup' && 'active'}`}>{TRANS.trans('sign_up', lang)}</Link></li>
+                            <li><Link to={LOGIN} className={`${active.route === LOGIN && 'active'}`}>{TRANS.trans('login', lang)}</Link></li>
+                            <li><Link to={SIGN_UP} className={`${active.route === SIGN_UP && 'active'}`}>{TRANS.trans('sign_up', lang)}</Link></li>
                         </div>
 
                     }
@@ -63,7 +72,7 @@ function mapStateToProps({currentLang, user, authState, activeRoute}, props) {
         user,
         authState,
         active: {
-            route: activeRoute[0]
+            route: activeRoute[activeRoute.length - 1]
         },
         ...props
     }
