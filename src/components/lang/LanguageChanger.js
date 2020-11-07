@@ -7,9 +7,9 @@ import {secondaryBg} from "../../utils/AppColors";
 
 class LanguageChanger extends Component {
     render() {
-        const {dispatch, lang} = this.props;
+        const {dispatch, lang, hPlacement, offsetY} = this.props;
         return (
-            <div style={{position: 'fixed', top: 70, right: 20, zIndex: 999}}>
+            <div style={{position: hPlacement || 'absolute', top: offsetY || 40, right: 20, zIndex: 999}}>
                 <span style={{color: lang === 'fr' ? 'gray' : 'lime', paddingRight: 5}}>EN</span>/
                 <span style={{color: lang === 'en' ? 'gray' : 'lime', paddingLeft: 5}}>FR</span><br />
                 <Switch onChange={(event) => {

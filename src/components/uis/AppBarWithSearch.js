@@ -1,6 +1,6 @@
 import React, {Fragment, useState} from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
-import logo from '../../logo.svg';
+import logo from '../../logos/logo-mini.png';
 import {primary} from '../../utils/AppColors';
 import {
     AppBar,
@@ -22,6 +22,7 @@ import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {SETTINGS} from "../../routes/webUri";
+import * as TRANS from "../../utils/trans/TranslationService";
 
 
 
@@ -32,7 +33,7 @@ function AppBarWithSearch({title, children, ...props}) {
     const [openDrawer, setOpenDrawer] = useState(false);
 
     const isMenuOpen = Boolean(anchorEl);
-    const {history} = props;
+    const {history, currentLang} = props;
 
     const trigger = useScrollTrigger({disableHysteresis: true, threshold: 50});
 
@@ -89,14 +90,14 @@ function AppBarWithSearch({title, children, ...props}) {
             <AppBar position={trigger ? 'fixed' : 'static'} style={{backgroundColor: primary, boxShadow: "none"}}>
                 <Toolbar>
                     <Avatar style={{marginRight: 10, width: 60, borderRadius: 50}}>
-                        <img src={logo} width={60} className="App-logo" alt="logo" />
+                        <img src={logo} width={60} alt="logo" />
                     </Avatar>
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>
                             <SearchIcon />
                         </div>
                         <InputBase
-                            placeholder="Search…"
+                            placeholder={TRANS.trans('ph_search', currentLang)}
                             classes={{
                                 root: classes.inputRoot,
                                 input: classes.inputInput,

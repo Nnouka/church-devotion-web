@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import React from 'react';
 import * as TRANS from '../../utils/trans/TranslationService';
 import serializeForm from 'form-serialize';
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {handleLogin, receiveAuthedUser} from "../../actions/user";
+import { receiveAuthedUser} from "../../actions/user";
 import queryStr from "../../utils/queryStr";
-import {hideLoading, showLoading} from "react-redux-loading";
+import LoadingBar, {hideLoading, showLoading} from "react-redux-loading";
 import {login} from "../../api/LoginAPI";
 import {setAuthState} from "../../actions/authState";
 import {btn, input} from "../common/Styles";
@@ -38,14 +38,15 @@ function LoginCard(props) {
     };
     const renderSignup = () => {
         return (
-            <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+            <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" fullScreen>
                 <DialogTitle id="form-dialog-title">
+                    <div className='text-center' style={{color: primary, fontSize: 24}}>{`${TRANS.trans('app_name', lang)}`}</div>
                     <IconButton aria-label="close" className={classes.closeButton} onClick={handleClose}>
                         <CloseIcon />
                     </IconButton>
                 </DialogTitle>
-                <DialogContent>
-                    <SignUpCard onDialogClose={() => handleClose()} />
+                <DialogContent style={{marginTop: 20}}>
+                    <SignUpCard onDialogClose={() => handleClose()}/>
                 </DialogContent>
             </Dialog>
         );
@@ -74,7 +75,6 @@ function LoginCard(props) {
             }
             dispatch(hideLoading());
         });
-        // dispatch(handleLogin(values, () => history.push(redirectUrl)));
     }
 
     const {lang, regSuccess} = props;
@@ -112,7 +112,7 @@ function LoginCard(props) {
                     <button type="button"
                             style={{...btn, backgroundColor: lime, color: white}}
                             onClick={handleClickOpen}
-                    >{`${TRANS.trans('signup', lang)}`}</button>
+                    >{`${TRANS.trans('sign_up', lang)}`}</button>
                     {
                         renderSignup()
                     }

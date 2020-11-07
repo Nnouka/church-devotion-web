@@ -3,11 +3,10 @@ import * as TRANS from '../../utils/trans/TranslationService';
 import serializeForm from 'form-serialize';
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {handleSignUp} from "../../actions/user";
-import {hideLoading, showLoading} from "react-redux-loading";
+import {hideLoading, LoadingBar, showLoading} from "react-redux-loading";
 import {registerUser} from "../../api/SignUpAPI";
 import {btn, input} from "../common/Styles";
-import {secondaryBg, white} from "../../utils/AppColors";
+import {primary, white} from "../../utils/AppColors";
 
 class SignUpCard extends Component {
     state = {
@@ -33,6 +32,7 @@ class SignUpCard extends Component {
                    this.setState(() => ({errorMsg: 'network_error'}))
                }
                dispatch(hideLoading());
+               onDialogClose && onDialogClose();
            }
         )
     }
@@ -41,7 +41,9 @@ class SignUpCard extends Component {
         const {errorMsg} = this.state;
         return (
             <div>
+                <LoadingBar style={{backgroundColor: primary}}/>
                 <div className="card center" style={{backgroundColor: white}}>
+                    <LoadingBar />
                     {
                         errorMsg !== null &&
                         <div className='alert-danger text-center'>
@@ -55,7 +57,7 @@ class SignUpCard extends Component {
                             <input style={input} type='email' name="email" placeholder={`${TRANS.trans('email', lang)}`}/>
                             <input style={input} type='password' name="password" placeholder={`${TRANS.trans('password', lang)}`}/>
                             <input style={input} type='text' name="phone" placeholder={`${TRANS.trans('phone_number', lang)}`}/>
-                            <button  type="submit" style={btn}>{`${TRANS.trans('sign_up', lang)}`}</button>
+                            <button type="submit" style={{...btn, backgroundColor: primary, color: white}}>{`${TRANS.trans('sign_up', lang)}`}</button>
                         </form>
                     </div>
                 </div>

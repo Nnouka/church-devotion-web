@@ -4,12 +4,16 @@ import {connect} from 'react-redux';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import {primary, white} from "../utils/AppColors";
-import logo from "../logo.svg";
+import {white} from "../utils/AppColors";
 import {withRouter} from 'react-router-dom';
 import {ArrowBack, Home, Dashboard} from '@material-ui/icons';
 import {popRoute} from "../actions/activeRoute";
 import {BASE, DASHBOARD, SETTINGS} from "./webUri";
+import * as AppUtils from "../utils/AppUtils";
+import {setAuthState} from "../actions/authState";
+import {receiveAuthedUser} from "../actions/user";
+import {FiLogOut} from 'react-icons/fi';
+
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -29,6 +33,12 @@ const useStyles = makeStyles((theme) => ({
 function SettingsDrawer(props){
     const {currentLang, activeRoute, history, dispatch, popTo} = props;
     const classes = useStyles();
+    const logout = () => {
+        AppUtils.logout();
+        dispatch(setAuthState(false));
+        dispatch(receiveAuthedUser(null));
+        history.push(BASE);
+    }
     return (
         <div className={classes.root}>
             <Grid container spacing={3} >
@@ -68,6 +78,14 @@ function SettingsDrawer(props){
                         </div>
                         <div className="settings-menu-text">{TRANS.trans('dashboard', currentLang)}</div>
                     </div>
+                </Grid>
+                <Grid item xs={12} sm={12} md={12}>
+                    <div className="settings-menu-item">
+                        <FiLogOut style={{color: white}} onClick={() => {
+                            logout()
+                        }} />
+                    </div>
+                    <div className="settings-menu-title">{TRANS.trans('logout', currentLang)}</div>
                 </Grid>
             </Grid>
         </div>

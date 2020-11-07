@@ -11,6 +11,7 @@ import {withRouter} from 'react-router-dom';
 import {Dashboard, ArrowRight, Home} from '@material-ui/icons';
 import {Tooltip} from '@material-ui/core';
 import {BASE, DASHBOARD, LOGIN, SIGN_UP} from "../../routes/webUri";
+import {FiLogOut} from 'react-icons/fi';
 
 class NavHeader extends Component {
     render() {
@@ -24,32 +25,31 @@ class NavHeader extends Component {
         return (
             <header className="guest-header">
                 <ul>
-                    {/*<li className="guest-header-text">{TRANS.trans('app_name', lang)}</li>*/}
-                    <li><Link to={BASE} className={`${active.route === BASE && 'active'}`}>
+                    <li>
                         <Tooltip title={TRANS.trans('home', lang)}>
-                            <Home />
-                        </Tooltip>
-
-                    </Link></li>
+                            <Link to={BASE} className={`${active.route === BASE && 'active'}`}>
+                                <Home />
+                            </Link>
+                        </Tooltip></li>
                     <div className="take-right">
                         {
                             user !== null &&
                             <li>
-                                <Link to={DASHBOARD} className={`${active.route === DASHBOARD && 'active'}`}>
                                 <Tooltip title={user.fullName}>
-                                    <Dashboard />
+                                    <Link to={DASHBOARD} className={`${active.route === DASHBOARD && 'active'}`}>
+                                        <Dashboard />
+                                    </Link>
                                 </Tooltip>
-                            </Link>
                             </li>
                         }
                         {
                             authState &&
                             <li>
-                                <div className="logout-div" onClick={() => logout()}>
-                                    <Tooltip title={TRANS.trans('logout', lang)} >
-                                        <ArrowRight />
-                                    </Tooltip>
-                                </div>
+                                <Tooltip title={TRANS.trans('logout', lang)} >
+                                    <div className="logout-div" onClick={() => logout()}>
+                                        <FiLogOut />
+                                    </div>
+                                </Tooltip>
                             </li>
                         }
                     </div>
