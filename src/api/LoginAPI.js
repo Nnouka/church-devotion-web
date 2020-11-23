@@ -27,7 +27,7 @@ export const login = (credentials) => {
                     AppUtils.setAccessToken(response.access_token);
                     AppUtils.setRefreshToken(response.refresh_token);
                     AppUtils.setTokenExpiresIn(response.expires_in);
-                    getApiUserDetails().then(resp => {
+                    getApiUserDetails(response.access_token).then(resp => {
                         if (resp !== undefined) {
                             AppUtils.setUserDetails(JSON.stringify(resp));
                             resolve(resp);

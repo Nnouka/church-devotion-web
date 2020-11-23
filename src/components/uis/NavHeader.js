@@ -7,10 +7,10 @@ import * as AppUtils from '../../utils/AppUtils';
 import {setAuthState} from "../../actions/authState";
 import {receiveAuthedUser} from "../../actions/user";
 import {withRouter} from 'react-router-dom';
-import {Dashboard, ArrowRight, Home} from '@material-ui/icons';
+import {Dashboard, ArrowRight, Home, Add} from '@material-ui/icons';
 import {Tooltip} from '@material-ui/core';
-import {BASE, DASHBOARD, LOGIN, SIGN_UP} from "../../routes/webUri";
-import {FiLogOut} from 'react-icons/fi';
+import {BASE, CREATE, DASHBOARD, LOGIN, SIGN_UP} from "../../routes/webUri";
+import {FiLogOut, FiPlusCircle} from 'react-icons/fi';
 
 class NavHeader extends Component {
     render() {
@@ -25,11 +25,19 @@ class NavHeader extends Component {
             <header className="guest-header">
                 <ul>
                     <li>
+                        <Tooltip title={TRANS.trans('create', lang)}>
+                            <Link to={CREATE} className={`${active.route === CREATE && 'active'}`}>
+                                <Add />
+                            </Link>
+                        </Tooltip>
+                    </li>
+                    <li>
                         <Tooltip title={TRANS.trans('home', lang)}>
                             <Link to={BASE} className={`${active.route === BASE && 'active'}`}>
                                 <Home />
                             </Link>
-                        </Tooltip></li>
+                        </Tooltip>
+                    </li>
                     <div className="take-right">
                         {
                             user !== null &&

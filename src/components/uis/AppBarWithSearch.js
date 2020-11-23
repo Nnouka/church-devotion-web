@@ -107,10 +107,7 @@ function AppBarWithSearch({title, children, ...props}) {
                     </div>
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
-
                             {children}
-
-
                     </div>
                     <div className={classes.sectionMobile}>
                         <IconButton

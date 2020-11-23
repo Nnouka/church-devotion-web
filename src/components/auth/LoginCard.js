@@ -17,6 +17,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import SignUpCard from "./SignUpCard";
 import {makeStyles} from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
+import {handleErrorCode} from "../../api/errorCodes";
 const useStyles = makeStyles((theme) => ({
     closeButton: {
         position: 'absolute',
@@ -64,20 +65,16 @@ function LoginCard(props) {
                 dispatch(receiveAuthedUser(res))
                 setErrorMsg(null);
                 dispatch(hideLoading());
-                history.push(redirectUrl);
+                history.push(`${redirectUrl}`);
             }
         ).catch(error => {
-            console.log(error);
-            if (error.code !== undefined) {
-                setErrorMsg(error.code);
-            } else {
-                setErrorMsg('network_error');
-            }
+            setErrorMsg(handleErrorCode(error.code));
             dispatch(hideLoading());
         });
     }
 
     const {lang, regSuccess} = props;
+
     const message = queryStr.decode(props.message);
     return (
         <div>

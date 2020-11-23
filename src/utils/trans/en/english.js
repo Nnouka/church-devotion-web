@@ -256,6 +256,7 @@ export const map_en = new Map([
   ['BAD_CREDENTIALS', ['Invalid user Credentials. Please try again.']],
   ['public_gist', ['The churches of Christ Salute you']],
   ['setting_n_links', ['Settings and Links']],
+  ['congregation', ['Congregation']],
 
 
 ]);

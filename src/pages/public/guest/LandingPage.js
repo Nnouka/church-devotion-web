@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import * as TRANS from '../../../utils/trans/TranslationService';
 import {connect} from 'react-redux';
 
@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
         overflow: 'hidden',
-        paddingBottom: 100,
+        paddingBottom: 80,
     },
     paper: {
         padding: theme.spacing(2),
@@ -33,32 +33,34 @@ function LandingPage(props){
     const search = location !== undefined ? location.search : '';
     const query = queryStr.parse(search);
     return (
-        <div className={classes.root}>
+        <Fragment>
             <LoadingBar style={{backgroundColor: primary}}/>
-            <LanguageChanger />
-            <Grid container spacing={3} className={classes.container}>
-                <Grid item xs={12} sm={12} md={6}>
-                    <div className="center">
-                        <h1 className='text-center' style={{color: primary}}>{`${TRANS.trans('app_name', currentLang)}`}</h1>
-                    </div>
-                    <div className="center">
-                        <h3 className='text-center' style={{color: primary}}>{`${TRANS.trans('public_gist', currentLang)}`}</h3>
-                    </div>
-                    <div className="center" >
-                        <div className="text-center">
-                            <img src={logo} width={100} alt="logo" />
+            <div className={classes.root}>
+                <LanguageChanger />
+                <Grid container spacing={3} className={classes.container}>
+                    <Grid item xs={12} sm={12} md={6}>
+                        <div className="center">
+                            <h1 className='text-center' style={{color: primary}}>{`${TRANS.trans('app_name', currentLang)}`}</h1>
                         </div>
-                    </div>
+                        <div className="center">
+                            <h3 className='text-center' style={{color: primary}}>{`${TRANS.trans('public_gist', currentLang)}`}</h3>
+                        </div>
+                        <div className="center" >
+                            <div className="text-center">
+                                <img src={logo} width={100} alt="logo" />
+                            </div>
+                        </div>
+                    </Grid>
+                    <Grid item xs={12} sm={12} md={6}>
+                        <LoginCard
+                            redirectUrl={getRedirectUrl()}
+                            message={query.m}
+                            regSuccess={query.r}
+                        />
+                    </Grid>
                 </Grid>
-                <Grid item xs={12} sm={12} md={6}>
-                    <LoginCard
-                        redirectUrl={getRedirectUrl()}
-                        message={query.m}
-                        regSuccess={query.r}
-                    />
-                </Grid>
-            </Grid>
-        </div>
+            </div>
+        </Fragment>
     );
 }
 

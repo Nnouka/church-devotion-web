@@ -35,7 +35,7 @@ Prayer point is, an issue and God’s answer
 To get started:
 
 * install all project dependencies with `npm install`
-* start the development server with `npm start` or `yarn start`
+* start the development server with `npm run begin`
 
 ## Test credentials
 

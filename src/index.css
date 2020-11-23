@@ -219,6 +219,9 @@ body, .app {
 .take-right {
   float: right !important;
 }
+.take-left {
+  float: left !important;
+}
 .guest-header div.take-center {
   margin: 0 auto;
 }
