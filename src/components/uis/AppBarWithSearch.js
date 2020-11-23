@@ -1,7 +1,7 @@
 import React, {Fragment, useState} from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import logo from '../../logos/logo150x120.png';
-import {primary} from '../../utils/AppColors';
+import {primary, white} from '../../utils/AppColors';
 import {
     AppBar,
     Avatar,
@@ -117,7 +117,7 @@ function AppBarWithSearch({title, children, ...props}) {
                             onClick={() => history.push(SETTINGS)}
                             color="inherit"
                         >
-                            <MenuIcon style={{color: 'gray'}}/>
+                            <MenuIcon style={{color: white}}/>
                         </IconButton>
                     </div>
                 </Toolbar>
