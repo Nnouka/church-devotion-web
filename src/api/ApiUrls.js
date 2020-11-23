@@ -1,5 +1,5 @@
-// export const BASE_URL = 'https://church-devotion.herokuapp.com';
-export const BASE_URL = 'http://localhost:8080';
+export const BASE_URL = 'https://church-devotion.herokuapp.com';
+// export const BASE_URL = 'http://localhost:8080';
 export const userUrls = {
   LOGIN: '/api/public/user/login',
   DETAILS: '/api/protected/user/details',
